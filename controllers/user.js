@@ -43,3 +43,15 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({error}))
 }
+exports.addFavorites = (req, res, next) => {
+
+    fav= req.query.favorites
+
+    User.updateOne(
+        {_id: req.params.id}, 
+        {$push: {"favorites":`${fav}`}})
+    .then(() => res.status(200).json({message: 'Movie added'}))
+    .catch((error) => res.status(400).json({error}))
+}
+
+
