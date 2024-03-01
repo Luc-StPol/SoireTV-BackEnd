@@ -1,0 +1,16 @@
+
+
+API SoiréeTV doc:
+
+Routes: http://localhost:8000
+
+use : '/api/auth'
+
+Routes user :
+post : '/signup'
+	'/login'
+	'/addfavorite/:id'
+
+http://localhost:8000/signup
+http://localhost:8000/login
+http://localhost:8000/addfavorite/:id
