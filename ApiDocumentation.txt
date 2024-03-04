@@ -2,15 +2,69 @@
 
 API SoiréeTV doc:
 
-Routes: http://localhost:8000
+Routes: http://localhost:4200
 
 use : '/api/auth'
 
 Routes user :
-post : '/signup'
-	'/login'
-	'/addfavorite/:id'
 
-http://localhost:8000/signup
-http://localhost:8000/login
-http://localhost:8000/addfavorite/:id
+post :
+	'/signup'
+	'/login'
+	'/check/favortie/:id'
+	'/delete/favorite/:id'
+	'/check/recommandations/:id'
+	'/delete/recommandations/:id'
+	'/check/watchlist/:id'
+	'/delete/watchlist/:id'
+	'/check/seemovie/:id'
+	'/delete/seemovie/:id'
+
+
+
+put :
+	'/add/favorite/:id'
+	'/add/recommandations/:id'
+	'/add/watchlist/:id'
+	'/add/seemovie/:id'
+	
+get :
+	'/profil/:id'
+
+delete:
+	
+
+http://localhost:4200/api/auth/signup
+http://localhost:4200/api/auth/login
+
+http://localhost:4200/api/auth/profil/:id
+
+http://localhost:4200/api/auth/check/favorite/:id
+http://localhost:4200/api/auth/add/favorite/:id
+http://localhost:4200/api/auth/delete/favorite/:id
+
+http://localhost:4200/api/auth/check/recommandations/:id
+http://localhost:4200/api/auth/add/recommandations/:id
+http://localhost:4200/api/auth/delete/recommandations/:id
+
+http://localhost:4200/api/auth/check/watchlist/:id
+http://localhost:4200/api/auth/add/watchlist/:id
+http://localhost:4200/api/auth/delete/watchlist/:id
+
+http://localhost:4200/api/auth/check/seemovie/:id
+http://localhost:4200/api/auth/add/seemovie/:id
+http://localhost:4200/api/auth/delete/seemovie/:id
+
+
+Models:
+
+user.
+	_id
+	email
+	pseudo
+	password
+	profilPicture
+	favorites
+	watchlist
+	recomandations
+	seenMovie

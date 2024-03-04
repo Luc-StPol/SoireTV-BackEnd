@@ -3,20 +3,20 @@ const jwt = require('jsonwebtoken')
 
 const User = require('../models/User')
 
+//Global User routes
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
         const user = new User({
             email: req.body.email,
-            password: hash
+            password: hash          
         })
         user.save()
         .then(() => res.status(201).json({message:'User created'}))
-        .catch(error => res.status(400).json({error}))
+        .catch(error => res.status(401).json({error}))
     })
     .catch(error => res.status(500).json({error}))
 }
-
 exports.login = (req, res, next) => {
     User.findOne({email : req.body.email})
     .then(user => {
@@ -43,24 +43,11 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({error}))
 }
-exports.addFavorites = (req, res, next) => {
-    fav= req.body.favorites
-    User.findOne({favorites:fav})  
- .then((favorites) => {
-    if(!favorites) {
-        return     User.updateOne(
-            {_id: req.params.id}, 
-            {$push: {"favorites":`${fav}`}})
-        .then(() => res.status(200).json({message: 'Movie added'}))
-        .then(console.log(`${fav} added to favorites`))
-        .catch((error) => res.status(400).json({error}))
-    } else {
-        return console.log("Object already added"),
-        res.status(400).json("Object already added")
-        
-    }
- })
-
+exports.getProfil = (req, res, next) => {
+    User.findOne({_id: req.params.id})
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(404).json({error}))
 }
+
 
 

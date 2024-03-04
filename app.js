@@ -4,7 +4,9 @@ const mongoose = require('mongoose')
 const express = require('express')
 
 const userRoutes = require('./routes/user.js')
+const userMovieRoutes= require('./routes/userMovie.js')
 const auth = require('./middleware/auth.js')
+const path = require('path')
 
 const app = express()
 
@@ -25,7 +27,10 @@ mongoose.connect('mongodb+srv://Luc:cT0TVbNZqj0SXjvi@soireetv.fhxfw1w.mongodb.ne
   });
 
 //Routes
+app.use('/images', express.static(path.join(__dirname,'images')))
 app.use('/api/auth', userRoutes)
+app.use('/api/fav/', userMovieRoutes)
+
 
 
 
